@@ -1,0 +1,359 @@
+PARAMETER  LIBRARY  ::  
+       EDIT 0 
+           ::: LINKED_LIST LIBRARY  ; 
+   ;
+
+*----
+*  Input data recovery
+*----
+STRING Library ;
+:: >>Library<< ;
+MODULE  LIB: UTL: DELETE: END: ABORT: ;
+                                   
+LIBRARY := LIB: ::
+  EDIT 0
+  DEPL LIB: DRAGON FIL: <<Library>>
+
+  NMIX 33 
+  CTRA APOL ANIS 2
+  PT
+  MIXS LIB: DRAGON FIL: <<Library>>
+
+
+*----
+*    Fuel -> 1.6, 2.4, 3.1, 3.2, 3.4 enriched
+*----
+* Fuel Cell 1.6 enriched
+  MIX 1 873.15  (*COMB1.1*)
+    O16      = O16      4.5989E-2   ! O16+O18
+    O17      = O17      1.7436E-5
+   ! O18      = O18      9.2032E-5
+    U234     = U234     3.0131E-6
+    U235     = U235     3.7503E-4 1 IRSET PT 1
+    U238     = U238     2.2625E-2 1 IRSET PT 1
+    Pu238    = Pu238    0.0       1 IRSET PT 1
+    Pu239    = Pu239    0.0       1 IRSET PT 1
+    Pu240    = Pu240    0.0       1 IRSET PT 1
+    Pu241    = Pu241    0.0       1 IRSET PT 1
+    Pu242    = Pu242    0.0       1 IRSET PT 1
+  MIX 2 
+    COMB 1 1.0
+  MIX 3 
+    COMB 1 1.0
+  MIX 4 
+    COMB 1 1.0
+
+* Fuel Cell 2.4 enriched
+  MIX 5 873.15  (*COMB1.1*)
+    O16      = O16      4.5922E-2   ! O16+O18
+    O17      = O17      1.7411E-5
+   ! O18      = O18      9.1898E-5
+    U234     = U234     4.4842E-6
+    U235     = U235     5.5814E-4 1 IRSET PT 1
+    U238     = U238     2.2407E-2 1 IRSET PT 1
+    Pu238    = Pu238    0.0       1 IRSET PT 1
+    Pu239    = Pu239    0.0       1 IRSET PT 1
+    Pu240    = Pu240    0.0       1 IRSET PT 1
+    Pu241    = Pu241    0.0       1 IRSET PT 1
+    Pu242    = Pu242    0.0       1 IRSET PT 1
+  MIX 6 
+    COMB 6 1.0
+  MIX 7 
+    COMB 6 1.0
+  MIX 8 
+    COMB 6 1.0
+
+* Fuel Cell 3.1 enriched
+  MIX 9 873.15  
+    O16      = O16      4.5945E-2   ! O16+O18
+    O17      = O17      1.7420E-5
+   ! O18      = O18      9.1942E-5
+    U234     = U234     5.7987E-6
+    U235     = U235     7.2175E-4 1 IRSET PT 1
+    U238     = U238     2.2253E-2 1 IRSET PT 1
+    Pu238    = Pu238    0.0       1 IRSET PT 1
+    Pu239    = Pu239    0.0       1 IRSET PT 1
+    Pu240    = Pu240    0.0       1 IRSET PT 1
+    Pu241    = Pu241    0.0       1 IRSET PT 1
+    Pu242    = Pu242    0.0       1 IRSET PT 1
+  MIX 10 
+    COMB 11 1.0
+  MIX 11 
+    COMB 11 1.0
+  MIX 12 
+    COMB 11 1.0
+
+* Fuel Cell 3.2 enriched
+  MIX 13 873.15 
+    O16      = O16      4.6121E-2   ! O16+O18
+    O17      = O17      1.7487E-5
+   ! O18      = O18      9.2296E-5
+    U234     = U234     5.9959E-6
+    U235     = U235     7.4630E-4 1 IRSET PT 1
+    U238     = U238     2.2317E-2 1 IRSET PT 1
+    Pu238    = Pu238    0.0       1 IRSET PT 1
+    Pu239    = Pu239    0.0       1 IRSET PT 1
+    Pu240    = Pu240    0.0       1 IRSET PT 1
+    Pu241    = Pu241    0.0       1 IRSET PT 1
+    Pu242    = Pu242    0.0       1 IRSET PT 1
+  MIX 14 
+    COMB 16 1.0
+  MIX 15 
+    COMB 16 1.0
+  MIX 16 
+    COMB 16 1.0
+
+* Fuel Cell 3.4 enriched
+  MIX 17 873.15  
+    O16      = O16      4.6202E-2   ! O16+O18
+    O17      = O17      1.7517E-5
+   ! O18      = O18      9.2459E-5
+    U234     = U234     6.4018E-6
+    U235     = U235     7.9681E-4 1 IRSET PT 1
+    U238     = U238     2.2307E-2 1 IRSET PT 1
+    Pu238    = Pu238    0.0       1 IRSET PT 1
+    Pu239    = Pu239    0.0       1 IRSET PT 1
+    Pu240    = Pu240    0.0       1 IRSET PT 1
+    Pu241    = Pu241    0.0       1 IRSET PT 1
+    Pu242    = Pu242    0.0       1 IRSET PT 1
+  MIX 18 
+    COMB 21 1.0
+  MIX 19 
+    COMB 21 1.0
+  MIX 20 
+    COMB 21 1.0
+*----
+*    Air
+*----
+  MIX 22 573.15 NOEV
+    !Ar36     = Ar36     7.8730E-9
+    !Ar38     = Ar38     1.4844E-9
+    !Ar40     = Ar40     2.3506E-6
+    C0        = C0       6.8296E-8  ! C12 + C13
+    !C12      = C12      6.7539E-8
+    !C13      = C13      7.5658E-10
+    N14      = N14      1.9680E-4
+    N15      = N15      7.2354E-7
+    O16      = O16      5.2972E-5   ! O16+O18
+    O17      = O17      2.0084E-8
+   ! O18      = O18      1.0601E-7
+*----
+*    Borosilicate glass
+*----
+  MIX 23 573.15 NOEV
+    Al27     = Al27     1.7352E-3
+    B10      = B10      9.6506E-4
+    B11      = B11      3.9189E-3
+    O16      = O16      4.6607E-2   ! O16+O18
+    O17      = O17      1.7671E-5
+   ! O18      = O18      9.3268E-5
+    Si28     = Si28     1.6926E-2
+    Si29     = Si29     8.5944E-4
+    Si30     = Si30     5.6654E-4
+*----
+*    Ag-In-Cd Control Rods
+*----
+  MIX 24 573.15 NOEV
+    Ag107    = Ag107    2.3523E-2
+    Ag109    = Ag109    2.1854E-2
+    Cd106    = Cd106    3.3882E-5
+    Cd108    = Cd108    2.4166E-5
+    Cd110    = Cd110    3.3936E-4
+    Cd111    = Cd111    3.4821E-4
+    Cd112    = Cd112    6.5611E-4
+    Cd113    = Cd113    3.3275E-4
+    Cd114    = Cd114    7.8252E-4
+    Cd116    = Cd116    2.0443E-4
+    In113    = In113    3.4219E-4
+    In115    = In115    7.6511E-3
+*----
+*    B4C Control Rod
+*----
+  MIX 25 573.15 NOEV 
+    B10      = B10      1.5206E-2
+    B11      = B11      6.1514E-2
+    C0       = C0       1.9185E-2   ! C12 + C13
+    !C12      = C12      1.8972E-2
+    !C13      = C13      2.1252E-4
+*----
+*    Helium
+*----
+  MIX 26 573.15 NOEV
+    He3      = He3      4.8089E-10
+    He4      = He4      2.4044E-4
+*----
+*    Inconel 718
+*----
+  MIX 27 573.15 NOEV
+    Cr50     = Cr50     7.8239E-4
+    Cr52     = Cr52     1.5088E-2
+    Cr53     = Cr53     1.7108E-3
+    Cr54     = Cr54     4.2586E-4
+    Fe54     = Fe54     1.4797E-3
+    Fe56     = Fe56     2.3229E-2
+    Fe57     = Fe57     5.3645E-4
+    Fe58     = Fe58     7.1392E-5
+    Mn55     = Mn55     7.8201E-4
+    Ni58     = Ni58     2.9320E-2
+    Ni60     = Ni60     1.1294E-2
+    Ni61     = Ni61     4.9094E-4
+    Ni62     = Ni62     1.5653E-3
+    Ni64     = Ni64     3.9864E-4
+    Si28     = Si28     5.6757E-4
+    Si29     = Si29     2.8820E-5
+    Si30     = Si30     1.8998E-5
+*----
+*    Stainless steel 304
+*----
+  MIX 28 573.15 NOEV
+    Cr50     = Cr50     7.6778E-4
+    Cr52     = Cr52     1.4806E-2
+    Cr53     = Cr53     1.6789E-3
+    Cr54     = Cr54     4.1791E-4
+    Fe54     = Fe54     3.4620E-3
+    Fe56     = Fe56     5.4345E-2
+    Fe57     = Fe57     1.2551E-3
+    Fe58     = Fe58     1.6703E-4
+    Mn55     = Mn55     1.7604E-3
+    Ni58     = Ni58     5.6089E-3
+    Ni60     = Ni60     2.1605E-3
+    Ni61     = Ni61     9.3917E-5
+    Ni62     = Ni62     2.9945E-4
+    Ni64     = Ni64     7.6261E-5
+    Si28     = Si28     9.5281E-4
+    Si29     = Si29     4.8381E-5
+    Si30     = Si30     3.1893E-5
+*----
+*    Zircaloy 4
+*----
+  MIX 29 573.15 (*GAINE*)
+    Cr50     = Cr50     3.2962E-6
+    Cr52     = Cr52     6.3564E-5
+    Cr53     = Cr53     7.2076E-6
+    Cr54     = Cr54     1.7941E-6
+    Fe54     = Fe54     8.6698E-6
+    Fe56     = Fe56     1.3610E-4
+    Fe57     = Fe57     3.1431E-6
+    Fe58     = Fe58     4.1829E-7
+    O16      = O16      3.0806E-4   ! O16+O18
+    O17      = O17      1.1680E-7
+   ! O18      = O18      6.1648E-7
+    Sn112    = Sn112    4.6735E-6
+    Sn114    = Sn114    3.1799E-6
+    Sn115    = Sn115    1.6381E-6
+    Sn116    = Sn116    7.0055E-5
+    Sn117    = Sn117    3.7003E-5
+    Sn118    = Sn118    1.1669E-4
+    Sn119    = Sn119    4.1387E-5
+    Sn120    = Sn120    1.5697E-4
+    Sn122    = Sn122    2.2308E-5
+    Sn124    = Sn124    2.7897E-5
+    Zr90     = Zr90     2.1828E-2 2 IRSET PT 1
+    Zr91     = Zr91     4.7601E-3 2 IRSET PT 1
+    Zr92     = Zr92     7.2759E-3 2 IRSET PT 1
+    Zr94     = Zr94     7.3734E-3 2 IRSET PT 1
+    Zr96     = Zr96     1.1879E-3 2 IRSET PT 1
+*----
+*    Borated water
+*----
+  MIX 30 573.15 NOEV (*MODE*)
+    B10      = B10      7.9714E-6
+    B11      = B11      3.2247E-5
+    H1       = H1_H2O   4.9456E-2
+    H2       = H2_D2O   7.7035E-6
+    O16      = O16      2.4722E-2   ! O16+O18
+    O17      = O17      9.3734E-6
+   ! O18      = O18      4.9474E-5
+*----
+*    Nozzle / Support plate borated water
+*----
+  MIX 31 573.15 NOEV (*MODE*)
+    B10      = B10      1.0559E-5
+    B11      = B11      4.2716E-5
+    H1       = H1_H2O   6.5512E-2
+    H2       = H2_D2O   1.0204E-5
+    O16      = O16      3.2749E-2   ! O16+O18
+    O17      = O17      1.2416E-5
+   ! O18      = O18      6.5535E-5
+*----
+*    Nozzle / Support plate stainless steel
+*----
+  MIX 32 573.15 NOEV
+    Cr50     = Cr50     3.5223E-4
+    Cr52     = Cr52     6.7924E-3
+    Cr53     = Cr53     7.7020E-4
+    Cr54     = Cr54     1.9172E-4
+    Fe54     = Fe54     1.5882E-3
+    Fe56     = Fe56     2.4931E-2
+    Fe57     = Fe57     5.7578E-4
+    Fe58     = Fe58     7.6625E-5
+    Mn55     = Mn55     8.0762E-4
+    Ni58     = Ni58     2.5731E-3
+    Ni60     = Ni60     9.9117E-4
+    Ni61     = Ni61     4.3085E-5
+    Ni62     = Ni62     1.3738E-4
+    Ni64     = Ni64     3.4985E-5
+    Si28     = Si28     4.3711E-4
+    Si29     = Si29     2.2195E-5
+    Si30     = Si30     1.4631E-5
+*----
+*    Carbon steel
+*----
+  MIX 33 573.15 NOEV
+    Al27     = Al27     4.3523E-5
+    B10      = B10      2.5833E-6
+    B11      = B11      1.0450E-5
+    C0       = C0       1.0559E-3   ! C12 + C13
+    !C12      = C12      1.0442E-3
+    !C13      = C13      1.1697E-5
+    Ca40     = Ca40     1.7043E-5
+    Ca42     = Ca42     1.1375E-7
+    Ca43     = Ca43     2.3734E-8
+    Ca44     = Ca44     3.6673E-7
+    Ca46     = Ca46     7.0322E-10
+    Ca48     = Ca48     3.2875E-8
+    Cr50     = Cr50     1.3738E-5
+    Cr52     = Cr52     2.6493E-4
+    Cr53     = Cr53     3.0041E-5
+    Cr54     = Cr54     7.4778E-6
+    Cu63     = Cu63     1.0223E-4
+    Cu65     = Cu65     4.5608E-5
+    Fe54     = Fe54     4.7439E-3
+    Fe56     = Fe56     7.4465E-2
+    Fe57     = Fe57     1.7197E-3
+    Fe58     = Fe58     2.2886E-4
+    Mn55     = Mn55     6.4126E-4
+    Mo100    = Mo100    2.9814E-5
+    Mo92     = Mo92     4.4822E-5
+    Mo94     = Mo94     2.8110E-5
+    Mo95     = Mo95     4.8567E-5
+    Mo96     = Mo96     5.1015E-5
+    Mo97     = Mo97     2.9319E-5
+    Mo98     = Mo98     7.4327E-5
+    Nb93     = Nb93     5.0559E-6
+    Ni58     = Ni58     4.0862E-4
+    Ni60     = Ni60     1.5740E-4
+    Ni61     = Ni61     6.8420E-6
+    Ni62     = Ni62     2.1815E-5
+    Ni64     = Ni64     5.5557E-6
+    P31      = P31      3.7913E-5
+    S32      = S32      3.4808E-5
+    S33      = S33      2.7420E-7
+    S34      = S34      1.5368E-6
+    S36      = S36      5.3398E-9
+    Si28     = Si28     6.1702E-4
+    Si29     = Si29     3.1330E-5
+    Si30     = Si30     2.0653E-5
+    Ti46     = Ti46     1.2144E-6
+    Ti47     = Ti47     1.0952E-6
+    Ti48     = Ti48     1.0851E-5
+    Ti49     = Ti49     7.9634E-7
+    Ti50     = Ti50     7.6249E-7
+    V0       = V00      9.1978E-5   ! V51 + V50
+    !V50      = V50      1.1526E-7
+    !V51      = V51      4.5989E-5
+
+;
+
+END: ;
+QUIT .

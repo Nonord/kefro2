@@ -1,0 +1,103 @@
+PARAMETER  GEOM  ::  
+       EDIT 0 
+           ::: LINKED_LIST GEOM  ; 
+   ;
+
+MODULE END: GEO: ;
+
+REAL 
+   Rcomb1 Rcomb2 Rcomb3 Rcomb4 Rcomb5 Rclad_Int Rclad_Ext
+   Cote A_Cote Lame CoteL 
+   Rguid1 Rguid2 
+   R1_TI R2_TI R3_TI R4_TI ;
+LINKED_LIST CELLS ;
+
+EVALUATE Rcomb4 := 0.39218 ;
+EVALUATE Rcomb1 := 0.50 Rcomb4 * ;
+EVALUATE Rcomb2 := 0.80 Rcomb4 * ;
+EVALUATE Rcomb3 := 0.95 Rcomb4 * ;
+EVALUATE Rclad_Int := 0.40005 ;
+EVALUATE Rclad_Ext := 0.45720 ;
+
+EVALUATE Rguid1 := 0.56134 ;
+EVALUATE Rguid2 := 0.60198 ;
+
+EVALUATE R1_TI := 0.43688 ;
+EVALUATE R2_TI := 0.48387 ;
+EVALUATE R3_TI := 0.56134 ;
+EVALUATE R4_TI := 0.60198 ;
+
+EVALUATE Cote := 1.25984 ;
+EVALUATE A_Cote := 21.50364 ;
+EVALUATE Lame := A_Cote 17.0 Cote * - 2.0 / ;
+EVALUATE CoteL := Cote Lame + ;
+
+***********************************************************************
+**   CELLS DESCRIPTION                                               **
+***********************************************************************
+CELLS := GEO: ::
+*----
+*    Instrument tube pin geometry
+*----
+::: TI := GEO: CARCEL 4
+             MESHX 0.0 <<Cote>>
+             MESHY 0.0 <<Cote>>
+             RADIUS 0.0 <<R1_TI>> <<R2_TI>> <<R3_TI>> <<R4_TI>>
+             MIX       22        29        30        29         30 ;
+*----
+*    Empty guide tube geometry above dashpot
+*----
+
+::: G1 := GEO: CARCEL 2
+             MESHX 0.0 <<Cote>>
+             MESHY 0.0 <<Cote>>
+             RADIUS 0.0 <<Rguid1>> <<Rguid2>>
+             MIX       30         29          30 ;
+*----
+*    Fuel pins
+*----
+* Fuel pin 1.6 enriched
+::: C1 := GEO: CARCEL 6
+             MESHX 0.0 <<Cote>>
+             MESHY 0.0 <<Cote>>
+             RADIUS 0.0 <<Rcomb1>> <<Rcomb2>> <<Rcomb3>> <<Rcomb4>> 
+                        <<Rclad_Int>> <<Rclad_Ext>>
+             MIX       1          2          3          4
+                       26         29             30 ;
+
+::: C12 := GEO: C1
+             MESHX 0.0 <<CoteL>> ;
+
+::: C13 := GEO: C12
+             MESHY 0.0 <<CoteL>> ;
+;
+
+***********************************************************************
+**         ASSEMBLIES DESCRIPTION                                    **
+***********************************************************************
+GEOM := GEO: CELLS :: CAR2D 9 9
+  EDIT 0
+  X- DIAG X+ REFL
+  Y- SYME Y+ DIAG
+  CELL TI C1 C1 G1 C1 C1 G1 C1 C12
+          C1 C1 C1 C1 C1 C1 C1 C12
+             C1 C1 C1 C1 C1 C1 C12
+                G1 C1 C1 G1 C1 C12
+                   C1 C1 C1 C1 C12
+                      G1 C1 C1 C12
+                         C1 C1 C12
+                            C1 C12
+                               C13
+
+  MERGE 2  1  1  3  1  1  3  1  4
+           1  1  1  1  1  1  1  4
+              1  1  1  1  1  1  4
+                 3  1  1  3  1  4
+                    1  1  1  1  4
+                       3  1  1  4
+                          1  1  4
+                             1  4
+                                5
+ ;
+
+END: ;

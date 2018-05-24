@@ -1,0 +1,258 @@
+PARAMETER  GEOM_N2  ::  
+       EDIT 0 
+           ::: LINKED_LIST GEOM_N2  ; 
+   ;
+
+MODULE END: GEO: ;
+
+REAL 
+   Rcomb1 Rcomb2 Rcomb3 Rcomb4 Rcomb5 Rclad_Int Rclad_Ext
+   Cote A_Cote Lame CoteL 
+   Rguid1 Rguid2 
+   R1_TI R2_TI R3_TI R4_TI ;
+LINKED_LIST CELLS ;
+
+EVALUATE Rcomb4 := 0.39218 ;
+EVALUATE Rcomb1 := 0.50 Rcomb4 * ;
+EVALUATE Rcomb2 := 0.80 Rcomb4 * ;
+EVALUATE Rcomb3 := 0.95 Rcomb4 * ;
+EVALUATE Rclad_Int := 0.40005 ;
+EVALUATE Rclad_Ext := 0.45720 ;
+
+EVALUATE Rguid1 := 0.56134 ;
+EVALUATE Rguid2 := 0.60198 ;
+
+EVALUATE R1_TI := 0.43688 ;
+EVALUATE R2_TI := 0.48387 ;
+EVALUATE R3_TI := 0.56134 ;
+EVALUATE R4_TI := 0.60198 ;
+
+EVALUATE Cote := 1.25984 ;
+EVALUATE A_Cote := 21.50364 ;
+EVALUATE Lame := A_Cote 17.0 Cote * - 2.0 / ;
+EVALUATE CoteL := Cote Lame + ;
+
+***********************************************************************
+**   CELLS DESCRIPTION                                               **
+***********************************************************************
+CELLS := GEO: ::
+*----
+*    Instrument tube pin geometry
+*----
+::: TI := GEO: CARCEL 4
+             MESHX 0.0 <<Cote>>
+             MESHY 0.0 <<Cote>>
+             RADIUS 0.0 <<R1_TI>> <<R2_TI>> <<R3_TI>> <<R4_TI>>
+             MIX       22        29        30        29         30 ;
+*----
+*    Empty guide tube geometry above dashpot
+*----
+
+::: G1 := GEO: CARCEL 2
+             MESHX 0.0 <<Cote>>
+             MESHY 0.0 <<Cote>>
+             RADIUS 0.0 <<Rguid1>> <<Rguid2>>
+             MIX       30         29          30 ;
+*----
+*    Fuel pins
+*----
+* Fuel pin 1.6 enriched
+::: C201 := GEO: CARCEL 6
+             MESHX 0.0 <<Cote>>
+             MESHY 0.0 <<Cote>>
+             RADIUS 0.0 <<Rcomb1>> <<Rcomb2>> <<Rcomb3>> <<Rcomb4>> 
+                        <<Rclad_Int>> <<Rclad_Ext>>
+             MIX       1          2          3          4
+                       26         29             30 ;
+
+::: C202 := GEO: C201
+             MIX       34         35         36         37
+                       26         29             30 ;
+
+::: C301 := GEO: C201
+             MIX       38         39         40         41
+                       26         29             30 ;
+
+::: C302 := GEO: C201
+             MIX       42         43         44         45
+                       26         29             30 ;
+
+::: C303 := GEO: C201
+             MIX       46         47         48         49
+                       26         29             30 ;
+
+::: C402 := GEO: C201
+             MIX       50         51         52         53
+                       26         29             30 ;
+
+::: C403 := GEO: C201
+             MIX       54         55         56         57
+                       26         29             30 ;
+
+::: C501 := GEO: C201
+             MIX       58         59         60         61
+                       26         29             30 ;
+
+::: C502 := GEO: C201
+             MIX       62         63         64         65
+                       26         29             30 ;
+
+::: C503 := GEO: C201
+             MIX       66         67         68         69
+                       26         29             30 ;
+
+::: C504 := GEO: C201
+             MIX       70         71         72         73
+                       26         29             30 ;
+
+::: C505 := GEO: C201
+             MIX       74         75         76         77
+                       26         29             30 ;
+
+::: C601 := GEO: C201
+             MIX       78         79         80         81
+                       26         29             30 ;
+
+::: C602 := GEO: C201
+             MIX       82         83         84         85
+                       26         29             30 ;
+
+::: C603 := GEO: C201
+             MIX       86         87         88         89
+                       26         29             30 ;
+
+::: C604 := GEO: C201
+             MIX       90         91         92         93
+                       26         29             30 ;
+
+::: C605 := GEO: C201
+             MIX       94         95         96         97
+                       26         29             30 ;
+
+::: C702 := GEO: C201
+             MIX       98         99         100        101
+                       26         29             30 ;
+
+::: C703 := GEO: C201
+             MIX       102        103        104        105
+                       26         29             30 ;
+
+::: C705 := GEO: C201
+             MIX       106        107        108        109
+                       26         29             30 ;
+
+::: C706 := GEO: C201
+             MIX       110        111        112        113
+                       26         29             30 ;
+
+::: C707 := GEO: C201
+             MIX       114        115        116        117
+                       26         29             30 ;
+
+::: C801 := GEO: C201
+             MIX       118        119        120        121
+                       26         29             30 ;
+
+::: C802 := GEO: C201
+             MIX       122        123        124        125
+                       26         29             30 ;
+
+::: C803 := GEO: C201
+             MIX       126        127        128        129
+                       26         29             30 ;
+
+::: C804 := GEO: C201
+             MIX       130        131        132        133
+                       26         29             30 ;
+
+::: C805 := GEO: C201
+             MIX       134        135        136        137
+                       26         29             30 ;
+
+::: C806 := GEO: C201
+             MIX       138        139        140        141
+                       26         29             30 ;
+
+::: C807 := GEO: C201
+             MIX       142        143        144        145
+                       26         29             30 ;
+
+::: C808 := GEO: C201
+             MIX       146        147        148        149
+                       26         29             30 ;
+
+::: C901 := GEO: C201
+             MIX       150        151        152        153
+                       26         29             30 ;
+
+::: C902 := GEO: C201
+             MIX       154        155        156        157
+                       26         29             30 ;
+
+::: C903 := GEO: C201
+             MIX       158        159        160        161
+                       26         29             30 ;
+
+::: C904 := GEO: C201
+             MIX       162        163        164        165
+                       26         29             30 ;
+
+::: C905 := GEO: C201
+             MIX       166        167        168        169
+                       26         29             30 ;
+
+::: C906 := GEO: C201
+             MIX       170        171        172        173
+                       26         29             30 ;
+
+::: C907 := GEO: C201
+             MIX       174        175        176        177
+                       26         29             30 ;
+
+::: C908 := GEO: C201
+             MIX       178        179        180        181
+                       26         29             30 ;
+
+::: C909 := GEO: C201
+             MIX       182        183        184        185
+                       26         29             30 ;
+
+::: L1 := GEO: CAR2D 1 1
+             MESHX 0.0 <<Lame>>
+             MESHY 0.0 <<Cote>>
+             MIX 30 ;
+
+::: L2 := GEO: L1
+             MESHY 0.0 <<Lame>> ;
+;
+
+***********************************************************************
+**         ASSEMBLIES DESCRIPTION                                    **
+***********************************************************************
+GEOM_N2 := GEO: CELLS :: CAR2D 10 10
+  EDIT 0
+  X- DIAG X+ REFL
+  Y- SYME Y+ DIAG
+  CELL TI C201 C301 G1   C501 C601 G1   C801 C901 L1
+          C202 C302 C402 C502 C602 C702 C802 C902 L1
+               C303 C403 C503 C603 C703 C803 C903 L1
+                    G1   C504 C604 G1   C804 C904 L1
+                         C505 C605 C705 C805 C905 L1
+                              G1   C706 C806 C906 L1
+                                   C707 C807 C907 L1
+                                        C808 C908 L1
+                                             C909 L1
+                                                  L2
+
+  MERGE 2  1  1  3  1  1  3  1  4
+           1  1  1  1  1  1  1  4
+              1  1  1  1  1  1  4
+                 3  1  1  3  1  4
+                    1  1  1  1  4
+                       3  1  1  4
+                          1  1  4
+                             1  4
+                                5
+ ;
+
+END: ;
